@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>1923 종로 장날</title>
+<meta name="description" content="1920년대 실력 양성 운동을 장터 사람들의 목소리로 따져 보는 한국사 수업 활동">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700;800&display=swap">
+<style>
+/* Layout: one narrow column like a folded newspaper page; the market map is the stage, dialogue rises from the bottom like a speech scroll. Single committed paper look. */
+:root{
+  --paper:#efe3c8;      /* hanji ground */
+  --paper-deep:#e2d1ad; /* aged edge */
+  --ink:#2b241c;        /* meok */
+  --ink-soft:#5e5143;
+  --seal:#b23a2a;       /* dojang red */
+  --indigo:#3d5a73;     /* jjok dye */
+  --line:#c9b48c;
+  --card:#f7efdc;
+  --pro:#3d6b4a; --con:#a53a2a; --mix:#8a6a1f;
+  --f-display:"Song Myung","Nanum Myeongjo",serif;
+  --f-body:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-paper:"Nanum Myeongjo","Batang",serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--f-body);font-size:clamp(16px,1rem + .2vw,19px);line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(ellipse at 50% 0%,rgba(255,250,235,.6),transparent 60%),radial-gradient(ellipse at 50% 100%,rgba(160,120,60,.12),transparent 70%);
+  background-attachment:fixed;min-height:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--indigo);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding-block:0 48px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:10px 8px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.top-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.brand{font-family:var(--f-display);font-size:1.1rem;letter-spacing:.02em}
+.who{font-size:.82rem;color:var(--ink-soft)}
+.prog{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px}
+.prog span{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--ink-soft);letter-spacing:.04em;text-align:center}
+.prog span::before{content:"";height:5px;border-radius:2px;background:var(--line)}
+.prog span.done::before{background:var(--ink-soft)}
+.prog span.now{color:var(--seal);font-weight:700}
+.prog span.now::before{background:var(--seal)}
+
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h2{font-size:1.75rem;line-height:1.3}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;color:var(--seal)}
+.lead{color:var(--ink-soft)}
+.screen{display:flex;flex-direction:column;gap:18px}
+.note{font-size:.8rem;color:var(--ink-soft);border-left:3px solid var(--line);padding-left:10px}
+
+.btn{appearance:none;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:14px 20px;border-radius:4px;font-size:1.05rem;cursor:pointer;min-height:52px;font-family:var(--f-body);font-weight:700}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.seal{background:var(--seal);border-color:var(--seal)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>.btn{flex:1 1 140px}
+
+/* start */
+.hero{position:relative;border:1px solid var(--line);border-radius:4px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--paper-deep) center 38%/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(239,227,200,.0) 35%,rgba(239,227,200,.92) 78%,var(--paper) 100%)}
+.hero-text{position:absolute;left:0;right:0;bottom:0;padding:20px;z-index:1;display:flex;flex-direction:column;gap:6px}
+.hero h1{font-size:clamp(2.6rem,11vw,3.6rem);line-height:1.05}
+.hero .date{font-family:var(--f-paper);font-weight:800;letter-spacing:.2em;font-size:.95rem}
+.question{font-family:var(--f-paper);font-size:1.25rem;font-weight:700;line-height:1.5;padding:16px 18px;background:var(--card);border:1px solid var(--line);position:relative}
+.question small{display:block;font-family:var(--f-body);font-weight:400;font-size:.78rem;color:var(--seal);letter-spacing:.12em;margin-bottom:4px}
+label.fld{display:flex;flex-direction:column;gap:6px;font-weight:700}
+input[type=text],textarea{width:100%;border:1.5px solid var(--line);background:#fffaf0;border-radius:4px;padding:12px 14px;font-weight:400}
+textarea{resize:vertical;min-height:84px;line-height:1.6}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.card-head{display:flex;gap:14px;align-items:flex-start}
+.card-head img{width:84px;flex:0 0 84px;height:auto}
+.card-head>div{min-width:0}
+.year{font-family:var(--f-paper);font-weight:800;font-size:2rem;line-height:1;color:var(--seal)}
+.card p{margin:0}
+.quiz{display:flex;flex-direction:column;gap:8px;border-top:1px dashed var(--line);padding-top:12px}
+.quiz b{font-size:.95rem}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fffaf0;border-radius:4px;padding:12px 14px;cursor:pointer;min-height:48px}
+.opt.right{border-color:var(--pro);background:#e6efe2}
+.opt.wrong{border-color:var(--con);background:#f5e1db}
+.fb{font-size:.92rem;padding:10px 12px;border-radius:4px;background:#efe6cf}
+.dots{display:flex;gap:6px;justify-content:center}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--seal)}
+
+/* market */
+.counter{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.9rem}
+.counter strong{font-family:var(--f-paper);font-size:1.3rem;font-variant-numeric:tabular-nums}
+.map{position:relative;width:100%;max-width:100%;aspect-ratio:941/1672;border:1px solid var(--line);border-radius:4px;background:var(--paper-deep) center/cover no-repeat;overflow:hidden}
+.tok{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;cursor:pointer;padding:0;width:96px}
+.tok .face{width:clamp(54px,15vw,70px);aspect-ratio:1;border-radius:50%;border:3px solid var(--paper);box-shadow:0 2px 6px rgba(43,36,28,.45);background:#e8dcc0 50% 4%/150% no-repeat;position:relative}
+.tok .name{font-size:.72rem;font-weight:700;background:var(--ink);color:var(--paper);padding:1px 7px;border-radius:3px;white-space:nowrap}
+.tok .seal{position:absolute;right:-10px;top:-8px;width:30px;opacity:0;transform:scale(1.6) rotate(-14deg);transition:.25s}
+.tok.met .seal{opacity:.95;transform:scale(1) rotate(-14deg)}
+.tok:not(.met) .face{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.tok .face{animation:none!important}.tok .seal{transition:none}}
+
+/* dialogue */
+.dlg{position:fixed;inset:0;z-index:20;background:rgba(43,36,28,.55);display:flex;align-items:flex-end;justify-content:center;padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.sheet{width:100%;max-width:560px;max-height:100%;overflow:auto;background:var(--paper);border-top:4px solid var(--ink);padding:0 max(16px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:12px}
+.stage{display:flex;align-items:flex-end;gap:12px;padding-top:14px;position:relative}
+.stage img{width:min(46vw,210px);height:auto;flex:0 0 auto;max-width:100%}
+.plate{display:flex;flex-direction:column;gap:2px;padding-bottom:10px;min-width:0}
+.plate b{font-family:var(--f-display);font-size:1.4rem;font-weight:400;line-height:1.2}
+.plate span{font-size:.82rem;color:var(--ink-soft)}
+.close{position:absolute;right:0;top:10px;border:0;background:none;font-size:1.6rem;cursor:pointer;width:44px;height:44px;color:var(--ink-soft)}
+.bubble{background:var(--card);border:1.5px solid var(--ink);border-radius:4px;padding:16px 18px;font-family:var(--f-paper);font-size:1.08rem;line-height:1.75;min-height:6.5em;position:relative}
+.bubble::before{content:"";position:absolute;left:40px;top:-11px;border:10px solid transparent;border-top:0;border-bottom-color:var(--ink)}
+.fict{font-size:.72rem;color:var(--ink-soft);text-align:center}
+.ask{background:#e9dcbd;border-radius:4px;padding:12px 14px;font-family:var(--f-paper);font-weight:700}
+.ask small{display:block;font-family:var(--f-body);font-weight:400;color:var(--seal);font-size:.75rem;letter-spacing:.1em}
+.stance{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stance button{border:2px solid var(--line);background:#fffaf0;border-radius:4px;min-height:52px;cursor:pointer;font-weight:700}
+.stance button[data-v=pro].on{border-color:var(--pro);background:var(--pro);color:#fff}
+.stance button[data-v=con].on{border-color:var(--con);background:var(--con);color:#fff}
+.stance button[data-v=mix].on{border-color:var(--mix);background:var(--mix);color:#fff}
+
+/* scale */
+.issue{gap:14px}
+.issue blockquote{margin:0;font-family:var(--f-paper);font-weight:700;font-size:1.15rem;line-height:1.55}
+input[type=range]{width:100%;accent-color:var(--seal);height:32px}
+.ticks{display:grid;grid-template-columns:repeat(5,1fr);font-size:.7rem;color:var(--ink-soft);text-align:center;margin-top:-4px}
+.ticks span.on{color:var(--seal);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:#fffaf0;border-radius:999px;padding:4px 12px 4px 4px;cursor:pointer;min-height:44px;font-size:.88rem}
+.chip i{width:34px;height:34px;border-radius:50%;background:#e8dcc0 50% 4%/150% no-repeat;flex:0 0 34px}
+.chip.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.scale-img{width:120px;align-self:center}
+
+/* newspaper */
+.paper{background:#f4ead2;border:1px solid #b9a37a;padding:18px 18px 26px;font-family:var(--f-paper);position:relative;box-shadow:0 1px 0 #d8c59e,0 6px 18px rgba(80,60,30,.15)}
+.mast{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px double var(--ink);padding-bottom:6px;gap:8px}
+.mast b{font-family:var(--f-display);font-size:1.9rem;font-weight:400;line-height:1}
+.mast span{font-size:.7rem;text-align:right;color:var(--ink-soft)}
+.col-h{font-weight:800;font-size:.85rem;letter-spacing:.3em;margin:10px 0 4px;color:var(--seal)}
+.paper h3{font-family:var(--f-paper);font-weight:800;font-size:1.3rem;line-height:1.4;margin:4px 0 8px}
+.paper .by{font-size:.8rem;color:var(--ink-soft);margin-bottom:8px}
+.paper .body{text-indent:1em;line-height:1.85;white-space:pre-wrap;min-height:5em}
+.paper .stamp{position:absolute;right:14px;bottom:10px;width:64px;opacity:.85;transform:rotate(8deg)}
+.guide{display:flex;flex-direction:column;gap:12px}
+.guide label{font-weight:700;display:flex;flex-direction:column;gap:4px}
+.guide label small{font-weight:400;color:var(--ink-soft);font-size:.8rem}
+.count{font-size:.85rem;color:var(--ink-soft)}
+.count.ok{color:var(--pro);font-weight:700}
+
+/* summary */
+.sum{display:flex;flex-direction:column;gap:8px}
+.sum-row{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:8px 10px}
+.sum-row i{width:44px;height:44px;border-radius:50%;background:#e8dcc0 50% 4%/150% no-repeat}
+.sum-row div{min-width:0}
+.sum-row b{display:block;font-size:.9rem}
+.sum-row span{font-size:.82rem;color:var(--ink-soft);overflow-wrap:anywhere}
+.pill{font-size:.75rem;font-weight:700;color:#fff;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.pill.pro{background:var(--pro)}.pill.con{background:var(--con)}.pill.mix{background:var(--mix)}
+.bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;font-size:.8rem}
+.bar div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:8px 4px}
+.bar strong{display:block;font-family:var(--f-paper);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.scale-sum{display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.scale-sum div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.scale-sum em{font-style:normal;color:var(--seal);font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:4px;z-index:30;font-size:.9rem}
+.submit-box{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1.5px solid var(--ink);border-radius:4px;padding:16px}
+.submit-box p{margin:0;font-size:.88rem;color:var(--ink-soft)}
+.submit-box p.ok{color:var(--pro);font-weight:700}
+.submit-box p.err{color:var(--con);font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two>*{min-width:0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top-row"><span class="brand">1923 종로 장날</span><span class="who" id="who"></span></div>
+    <nav class="prog" id="prog" aria-label="진행"></nav>
+  </header>
+  <main id="app"></main>
+</div>
+<div id="dlgRoot"></div>
+
+<script>
+/* ▼ 선생님 구글 시트 우체통 주소. 앱스 스크립트 배포 후 나온 주소(…/exec)를 따옴표 안에 붙여 넣으세요. */
+const SUBMIT_URL = '';
+
+const IMG = Object.fromEntries(['map','paper','frame','stamp_round','stamp_sq','scale','coins','brush','cloth','bundle',
+  ...['owner','merchant','farmer','printer','youth','student','fund','mother'].flatMap(c=>['calm','happy','worry'].map(e=>c+'_'+e))
+].map(n=>[n,'img/'+n+'.webp']));
+
+const CHARS = [
+ {id:'owner', name:'양말 공장 사장', place:'평양에서 올라온 조선인 공장주', x:72,y:37, lines:[
+   ['c','평양에서 양말 공장을 하는 사람이오. 서울 거래처를 둘러보러 올라왔소.'],
+   ['h','물산 장려 운동이라면 나는 두 손 들어 찬성이오. 조선 사람이 조선 양말을 신어 주니 요즘은 주문이 밀려들 지경이오.'],
+   ['w','회사령이 없어지고 나서 일본 큰 회사들이 마음껏 들어오고 있소. 관세까지 없어지면 값싼 일본 물건이 쏟아질 텐데, 우리 같은 작은 공장은 그 앞에서 버틸 재간이 없소.'],
+   ['c','조선 사람 공장이 커져야 조선 사람 일자리도 생기는 것 아니겠소? 나는 이것이 민족을 살리는 길이라 믿소.']],
+  ask:'학생, 값이 조금 비싸도 조선 사람이 만든 물건을 사겠소?'},
+ {id:'merchant', name:'포목점 주인', place:'종로에서 옷감을 파는 상인', x:20,y:48, lines:[
+   ['c','종로에서 대를 이어 포목점을 하고 있지요.'],
+   ['h','요즘은 손님들이 들어오자마자 조선 무명 있느냐고 찾아요. 장사야 잘되지요.'],
+   ['w','그런데 찾는 사람은 느는데 조선 공장에서 나오는 물건이 모자라요. 도매값이 자꾸 오르니 나도 값을 올릴 수밖에 없어요.'],
+   ['c','그러니 손님들 눈총은 내가 다 받아요. 장사꾼들이 애국을 핑계로 잇속을 챙긴다는 말까지 들리니 속이 편치 않아요.']],
+  ask:'물건값이 오른 것은 누구 탓이라고 생각하오?'},
+ {id:'farmer', name:'소작농', place:'경기도에서 남의 땅을 부치는 농민', x:26,y:79, lines:[
+   ['c','경기도에서 남의 땅 부쳐 먹고 사는 사람이오. 곡식 좀 팔러 장에 나왔지.'],
+   ['w','물산 장려라… 신문 읽는 양반들 이야기 같소. 소작료 내고 나면 손에 남는 게 없는데, 조선 옷감이 좋은 줄 몰라서 못 사겠소?'],
+   ['w','조선 무명 값이 올랐다니 우리한테는 더 먼 이야기가 됐소. 형편이 이러니 싼 것을 살 수밖에.'],
+   ['c','대학 짓는다고 1원씩 내라는 말도 들었소. 뜻이야 좋지만, 우리 집에 1원은 큰돈이오.']],
+  ask:'학생이 보기에 이 운동이 우리 같은 농사꾼한테까지 닿고 있소?'},
+ {id:'printer', name:'인쇄소 직공', place:'경성 인쇄소에서 일하는 노동자', x:44,y:27, lines:[
+   ['c','인쇄소에서 활자를 줍고 기계를 돌리는 직공입니다.'],
+   ['h','운동의 뜻은 좋다고 생각해요. 우리 인쇄소에서도 물산 장려 선전지를 잔뜩 찍었거든요.'],
+   ['w','그런데 품삯은 그대로인데 조선 물건 값만 올랐어요. 공장 주인들은 재미를 봤다는데, 우리 일당이 오르지는 않았죠.'],
+   ['c','다 같이 애국하자는데, 그 열매는 누가 가져가는 걸까요?']],
+  ask:'월급은 그대로인데 물건값이 오르면, 학생이라면 무엇부터 줄이겠어요?'},
+ {id:'youth', name:'청년회 회원', place:'사회주의 사상에 공감하는 청년', x:80,y:64, lines:[
+   ['c','청년회에서 강연회를 열고 다니는 사람입니다.'],
+   ['w','저는 물산 장려 운동이 결국 조선인 자본가와 상인을 위한 운동이라고 봅니다. 민족을 앞세우지만, 이익은 가진 사람에게 돌아가지요.'],
+   ['w','보십시오. 찾는 사람이 늘자 물건값이 오르고, 그 부담은 노동자와 농민이 지고 있습니다.'],
+   ['h','물론 일본 자본에 맞서야 한다는 데는 저도 같은 생각입니다. 다만 조선 사람 안에도 가진 자와 못 가진 자가 있다는 걸 빼놓고는 이야기할 수 없다는 거지요.']],
+  ask:'학생은 민족 전체의 이익과 노동자·농민의 이익 중 무엇을 먼저 생각해야 한다고 봅니까?'},
+ {id:'student', name:'여학교 학생', place:'경성의 한 여학교 학생', x:45,y:40, lines:[
+   ['c','저는 경성에 있는 여학교에 다니고 있어요.'],
+   ['h','민립 대학이 세워지면 조선 사람이 세운 대학에서 공부할 수 있대요. 저도 용돈을 모아서 모금에 보탰어요.'],
+   ['c','조선 사람이 스스로 배우지 못하면 언제까지나 남의 아래에 있을 거라고 선생님께서 말씀하셨거든요.'],
+   ['w','그런데 여자도 그 대학에 들어갈 수 있을지는 잘 모르겠어요. 집에서는 공부는 그만하면 됐다고 하시고요.']],
+  ask:'대학이 생긴다면, 당신은 무엇을 공부하고 싶어요?'},
+ {id:'fund', name:'모금 위원', place:'민립 대학 설립을 위해 모금하는 지식인', x:52,y:60, lines:[
+   ['c','민립 대학 기성회 일을 돕고 있소. 장터마다 다니며 모금을 받고 있지요.'],
+   ['h','한 사람이 1원씩만 내도 조선 사람 손으로 대학을 세울 수 있소. 배움이야말로 민족의 힘을 기르는 길이오.'],
+   ['w','그런데 모금이 생각만큼 되지 않소. 가뭄과 물난리로 시골 살림이 말이 아니고, 당국은 모임을 자꾸 가로막소.'],
+   ['w','총독부가 경성에 대학을 따로 세운다는 말도 들리오. 그리되면 우리 대학을 바라는 마음이 흩어질까 걱정이오.']],
+  ask:'학생은 배움이 먼저라고 생각하오, 아니면 독립을 위한 다른 길과 함께 가야 한다고 생각하오?'},
+ {id:'mother', name:'장 보러 나온 아주머니', place:'살림을 꾸리는 주부', x:52,y:86, lines:[
+   ['c','저녁 찬거리 사러 나왔어요.'],
+   ['h','조선 사람이 조선 것을 쓰자는 말은 들을 때마다 가슴이 뜨거워져요. 우리 집 양반한테도 술 담배 줄이라고 했지요.'],
+   ['w','그런데 장바구니를 들면 마음이 달라져요. 조선 광목이 일본 광목보다 비싸졌으니, 애들 옷감을 무엇으로 사야 할지 모르겠어요.'],
+   ['c','마음은 찬성인데 지갑은 반대라고 할까요.']],
+  ask:'학생 어머니라면 비싼 조선 광목과 싼 일본 광목 중 무엇을 사실 것 같아요?'}
+];
+
+const CARDS = [
+ {year:'1920', img:'stamp_sq', title:'회사령이 폐지되다',
+  body:'그동안 조선에서 회사를 세우려면 총독부의 허가를 받아야 했습니다. 1920년 회사령이 폐지되면서 신고만 하면 회사를 세울 수 있게 되었습니다. 조선인 회사도 늘었지만, 자본이 큰 일본 기업이 조선에 들어오기도 훨씬 쉬워졌습니다.',
+  q:'회사령 폐지로 생긴 변화로 알맞은 것은?', opts:['일본 기업이 조선에 진출하기 쉬워졌다','조선인은 회사를 세울 수 없게 되었다','회사를 세우려면 총독부 허가가 새로 필요해졌다'], a:0,
+  ex:'허가제가 신고제로 바뀌면서 회사 설립이 쉬워졌고, 큰 자본을 가진 일본 기업의 진출도 늘었습니다.'},
+ {year:'1923', img:'bundle', title:'관세가 사라진다는 소식',
+  body:'일본과 조선 사이를 오가는 상품에 붙던 관세가 없어지는 쪽으로 정책이 바뀌었습니다. 공장에서 대량으로 만든 값싼 일본 상품이 쏟아져 들어올 것이라는 걱정이 커졌습니다. 막 자라기 시작한 조선인 공장과 상점에는 큰 위협이었습니다.',
+  q:'이 무렵 조선의 상공업자들이 가장 걱정한 것은?', opts:['조선 공장이 너무 빨리 늘어나는 것','값싼 일본 상품이 밀려 들어오는 것','조선 상품이 일본으로 너무 많이 팔리는 것'], a:1,
+  ex:'관세라는 울타리가 사라지면 값싼 일본 상품과 경쟁해야 했기 때문입니다.'},
+ {year:'1920–1923', img:'cloth', title:'물산 장려 운동',
+  body:'1920년 평양에서 조만식 등이 조선물산장려회를 만들었고, 1923년 서울에서 전국 조직으로 퍼졌습니다. 토산품을 아껴 쓰고, 근검 저축하고, 술과 담배를 끊자고 했습니다. "내 살림 내 것으로", "조선 사람 조선 것"이 대표 구호였습니다.',
+  q:'물산 장려 운동이 내세운 실천이 아닌 것은?', opts:['조선에서 만든 물건 쓰기','술과 담배 끊기','일본 회사에 돈을 맡겨 불리기'], a:2,
+  ex:'토산품 애용, 근검 저축, 금주와 단연이 이 운동의 실천 내용이었습니다.'},
+ {year:'1922–1923', img:'coins', title:'민립 대학 설립 운동',
+  body:'조선에는 조선 사람이 세운 대학이 없었습니다. 1922년 조선교육회를 거쳐, 1923년 이상재 등이 조선민립대학기성회를 만들어 대학 설립 자금을 모으기 시작했습니다. 구호는 "한민족 1천만이 한 사람 1원씩"이었습니다.',
+  q:'이 운동의 구호에 담긴 모금 방식은?', opts:['큰 부자 몇 사람이 기부한다','모두가 1원씩 조금씩 보탠다','총독부 예산으로 세운다'], a:1,
+  ex:'온 민족이 조금씩 힘을 모으자는 뜻입니다. 이 모금이 어떻게 되었는지는 장터에서 직접 들어 보세요.'}
+];
+
+const ISSUES = [
+ '물산 장려 운동은 조선 민중 모두에게 이익이었다.',
+ '독립보다 실력 양성이 먼저다.',
+ '민립 대학 설립 운동이 실패한 가장 큰 이유는 총독부의 방해다.'
+];
+const TICKS=['전혀 아니다','아니다','잘 모르겠다','그렇다','매우 그렇다'];
+const STEPS=['시작','배경','장터','저울','투고','정리'];
+const GUIDE=[
+ ['나는 누구인가','어디서 무엇을 하며 사는 사람인지 밝혀 보세요.'],
+ ['이 운동을 어떻게 보는가','물산 장려 운동이나 민립 대학 설립 운동에 대한 생각을 쓰세요.'],
+ ['왜 그렇게 생각하는가','내 살림과 형편에서 근거를 찾아 쓰세요.'],
+ ['무엇을 바라는가','운동을 이끄는 사람들이나 세상에 바라는 점을 쓰세요.']
+];
+const STANCE={pro:'찬성',con:'반대',mix:'복잡함'};
+
+const KEY='jongno1923-v1';
+const blank=()=>({sid:'',name:'',submittedAt:'',step:0,card:0,quiz:{},met:{},scale:ISSUES.map(()=>({v:null,who:[]})),letter:{who:null,parts:['','','','']},final:''});
+let S=blank();
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(blank(),JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=(s,r=document)=>r.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ch=id=>CHARS.find(c=>c.id===id);
+const face=id=>`background-image:url(${IMG[id+'_calm']})`;
+const metIds=()=>CHARS.filter(c=>S.met[c.id]&&S.met[c.id].stance).map(c=>c.id);
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
+function go(n){S.step=n;save();render();window.scrollTo({top:0})}
+
+function renderTop(){
+  $('#who').textContent=S.name?`${S.sid} ${S.name}`:'';
+  $('#prog').innerHTML=STEPS.map((s,i)=>`<span class="${i<S.step?'done':''} ${i===S.step?'now':''}">${s}</span>`).join('');
+}
+function render(){renderTop();[s0,s1,s2,s3,s4,s5][S.step]();}
+
+/* 0 start */
+function s0(){
+  $('#app').innerHTML=`<section class="screen">
+   <div class="hero" style="background-image:url(${IMG.map})">
+     <div class="hero-text"><span class="date">一九二三 · 京城 鍾路</span><h1>조선 사람<br>조선 것?</h1>
+     <span class="lead">1923년 종로 장날, 장터 사람들에게 직접 물어보세요.</span></div>
+   </div>
+   <div class="question"><small>오늘의 질문</small>물산 장려 운동과 민립 대학 설립 운동은 모두를 위한 운동이었을까, 누군가를 위한 운동이었을까?</div>
+   <div class="two">
+    <label class="fld" for="sid">학번<input type="text" id="sid" maxlength="10" inputmode="numeric" placeholder="예: 20214" value="${esc(S.sid)}"></label>
+    <label class="fld" for="nm">이름<input type="text" id="nm" maxlength="12" placeholder="예: 김민지" value="${esc(S.name)}"></label>
+   </div>
+   <button class="btn seal" id="startBtn">장터로 가기</button>
+   <p class="note">장터에서 만나는 인물은 1920년대 자료를 바탕으로 재구성한 가상 인물입니다. 활동하는 동안 쓴 내용은 이 기기에 저장되고, 마지막에 「선생님께 제출」을 누를 때만 선생님께 전송됩니다.</p>
+  </section>`;
+  const sid=$('#sid'),nm=$('#nm'),b=$('#startBtn');
+  const chk=()=>b.disabled=!(sid.value.trim()&&nm.value.trim()); chk();
+  sid.oninput=chk; nm.oninput=chk;
+  b.onclick=()=>{S.sid=sid.value.trim();S.name=nm.value.trim();go(1)};
+}
+
+/* 1 cards */
+function s1(){
+  const i=S.card, c=CARDS[i], ans=S.quiz[i];
+  $('#app').innerHTML=`<section class="screen">
+   <div><span class="eyebrow">배경 읽기 · ${i+1} / ${CARDS.length}</span><h2>장터에 가기 전에</h2></div>
+   <article class="card">
+    <div class="card-head"><img src="${IMG[c.img]}" alt=""><div><div class="year">${c.year}</div><h3 style="font-size:1.35rem">${c.title}</h3></div></div>
+    <p>${c.body}</p>
+    <div class="quiz"><b>확인 질문 · ${c.q}</b>
+     ${c.opts.map((o,k)=>`<button class="opt ${ans!=null?(k===c.a?'right':(k===ans?'wrong':'')):''}" data-k="${k}" ${ans!=null?'disabled':''}>${o}</button>`).join('')}
+     ${ans!=null?`<div class="fb">${ans===c.a?'맞았어요. ':'정답은 「'+c.opts[c.a]+'」입니다. '}${c.ex}</div>`:''}
+    </div>
+   </article>
+   <div class="dots">${CARDS.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('')}</div>
+   <div class="row">
+    <button class="btn ghost" id="prev">${i===0?'처음으로':'이전 카드'}</button>
+    <button class="btn" id="next" ${ans==null?'disabled':''}>${i===CARDS.length-1?'장터로 들어가기':'다음 카드'}</button>
+   </div></section>`;
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{S.quiz[i]=+b.dataset.k;save();s1()});
+  $('#prev').onclick=()=>{if(i===0)go(0);else{S.card--;save();s1()}};
+  $('#next').onclick=()=>{if(i===CARDS.length-1)go(2);else{S.card++;save();s1()}};
+}
+
+/* 2 market */
+function s2(){
+  const n=metIds().length;
+  $('#app').innerHTML=`<section class="screen">
+   <div><span class="eyebrow">장터 탐방</span><h2>1923년 종로 장날</h2>
+   <p class="lead" style="margin:6px 0 0">사람을 눌러 이야기를 들어 보세요. 다 듣고 나면 그 사람이 운동을 어떻게 보는지 표시하고, 이유를 한 줄로 적습니다.</p></div>
+   <div class="counter"><span>만난 사람 <strong>${n}</strong> / 8</span><span>${n>=5?'이제 저울로 갈 수 있어요':'5명을 만나면 다음으로'}</span></div>
+   <div class="map" style="background-image:url(${IMG.map})">
+    ${CHARS.map(c=>`<button class="tok ${S.met[c.id]&&S.met[c.id].stance?'met':''}" style="left:${c.x}%;top:${c.y}%" data-id="${c.id}" aria-label="${c.name}와 이야기하기">
+      <span class="face" style="${face(c.id)}"><img class="seal" src="${IMG.stamp_round}" alt=""></span><span class="name">${c.name}</span></button>`).join('')}
+   </div>
+   <p class="note">모두 1920년대 자료를 바탕으로 재구성한 가상 인물입니다.</p>
+   <div class="row"><button class="btn ghost" id="back">배경 다시 보기</button><button class="btn" id="next" ${n<5?'disabled':''}>쟁점 저울로</button></div>
+  </section>`;
+  document.querySelectorAll('.tok').forEach(b=>b.onclick=()=>openDlg(b.dataset.id));
+  $('#back').onclick=()=>{S.card=0;go(1)};
+  $('#next').onclick=()=>go(3);
+}
+
+function openDlg(id){
+  const c=ch(id); let k=0; const rec=S.met[id]||{};
+  const root=$('#dlgRoot');
+  root.innerHTML=`<div class="dlg" role="dialog" aria-modal="true" aria-label="${c.name}"><div class="sheet">
+    <div class="stage"><img id="spr" alt="${c.name}"><div class="plate"><b>${c.name}</b><span>${c.place}</span></div>
+    <button class="close" id="x" aria-label="닫기">×</button></div>
+    <div class="bubble" id="bub" aria-live="polite"></div>
+    <div id="after"></div>
+    <p class="fict">재구성한 가상 인물입니다</p>
+  </div></div>`;
+  const spr=$('#spr'),bub=$('#bub'),after=$('#after');
+  const close=()=>{root.innerHTML='';s2()};
+  $('#x').onclick=close;
+  $('.dlg').onclick=e=>{if(e.target.classList.contains('dlg'))close()};
+  const ex={c:'calm',h:'happy',w:'worry'};
+  function line(){
+    const [e,t]=c.lines[k]; spr.src=IMG[id+'_'+ex[e]]; bub.textContent=t;
+    if(k<c.lines.length-1){after.innerHTML=`<div class="row"><button class="btn" id="nx">다음 이야기 ▸</button></div>`;$('#nx').onclick=()=>{k++;line()};$('#nx').focus()}
+    else form();
+  }
+  function form(){
+    spr.src=IMG[id+'_calm'];
+    after.innerHTML=`<div class="screen" style="gap:12px">
+     <div class="ask"><small>${c.name}이(가) 묻습니다</small>${c.ask}</div>
+     <label class="fld" for="ans">내 대답 <span style="font-weight:400;font-size:.8rem;color:var(--ink-soft)">(선택)</span><textarea id="ans" rows="2">${esc(rec.answer||'')}</textarea></label>
+     <b>이 사람은 이 운동을 어떻게 보고 있나요?</b>
+     <div class="stance">${Object.entries(STANCE).map(([v,l])=>`<button data-v="${v}" class="${rec.stance===v?'on':''}">${l}</button>`).join('')}</div>
+     <label class="fld" for="memo">왜 그렇게 보았나요? 한 줄로<input type="text" id="memo" maxlength="80" placeholder="예: 물건이 잘 팔려서 이익을 보기 때문" value="${esc(rec.memo||'')}"></label>
+     <div class="row"><button class="btn ghost" id="again">다시 듣기</button><button class="btn seal" id="ok" disabled>도장 찍기</button></div>
+    </div>`;
+    let st=rec.stance||null;
+    const ok=$('#ok'),memo=$('#memo');
+    const chk=()=>ok.disabled=!(st&&memo.value.trim()); chk();
+    after.querySelectorAll('.stance button').forEach(b=>b.onclick=()=>{st=b.dataset.v;after.querySelectorAll('.stance button').forEach(x=>x.classList.toggle('on',x===b));chk()});
+    memo.oninput=chk;
+    $('#again').onclick=()=>{k=0;line()};
+    ok.onclick=()=>{S.met[id]={stance:st,memo:memo.value.trim(),answer:$('#ans').value.trim()};save();close();toast(c.name+' 만남 기록');};
+  }
+  if(rec.stance){form();bub.textContent=c.lines[c.lines.length-1][1];}
+  else line();
+}
+
+/* 3 scale */
+function s3(){
+  const met=metIds();
+  $('#app').innerHTML=`<section class="screen">
+   <div><span class="eyebrow">쟁점 저울</span><h2>내 생각은 어느 쪽으로 기우나요?</h2>
+   <p class="lead" style="margin:6px 0 0">문장마다 저울을 움직이고, 장터에서 만난 사람 중 근거가 되는 사람을 고르세요.</p></div>
+   <img class="scale-img" src="${IMG.scale}" alt="">
+   ${ISSUES.map((t,i)=>{const s=S.scale[i];return `<article class="card issue">
+     <span class="eyebrow">쟁점 ${i+1}</span><blockquote>“${t}”</blockquote>
+     <div><input type="range" min="0" max="4" step="1" id="r${i}" value="${s.v==null?2:s.v}" aria-label="쟁점 ${i+1} 내 생각">
+     <div class="ticks" id="t${i}">${TICKS.map((x,k)=>`<span class="${s.v===k?'on':''}">${x}</span>`).join('')}</div></div>
+     <b style="font-size:.9rem">근거가 되는 사람</b>
+     <div class="chips">${met.map(id=>`<button class="chip ${s.who.includes(id)?'on':''}" data-i="${i}" data-id="${id}"><i style="${face(id)}"></i>${ch(id).name}</button>`).join('')}</div>
+    </article>`}).join('')}
+   <div class="row"><button class="btn ghost" id="back">장터로 돌아가기</button><button class="btn" id="next">독자 투고 쓰기</button></div>
+  </section>`;
+  const upd=()=>{$('#next').disabled=!S.scale.every(s=>s.v!=null&&s.who.length)};
+  ISSUES.forEach((_,i)=>{const r=$('#r'+i);r.oninput=()=>{S.scale[i].v=+r.value;save();$('#t'+i).querySelectorAll('span').forEach((x,k)=>x.classList.toggle('on',k===+r.value));upd()}});
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const s=S.scale[+b.dataset.i],id=b.dataset.id;const j=s.who.indexOf(id);if(j<0)s.who.push(id);else s.who.splice(j,1);b.classList.toggle('on',j<0);save();upd()});
+  upd();
+  $('#back').onclick=()=>go(2);
+  $('#next').onclick=()=>go(4);
+}
+
+/* 4 letter */
+function sentences(t){return (t.match(/[^.!?。]+[.!?。]+/g)||[]).length+(/[^.!?。\s]\s*$/.test(t)?1:0)}
+function s4(){
+  const met=metIds(),L=S.letter;
+  if(L.who&&!met.includes(L.who))L.who=null;
+  $('#app').innerHTML=`<section class="screen">
+   <div><span class="eyebrow">신문 독자 투고</span><h2>그 사람이 되어 신문에 글을 보내세요</h2>
+   <p class="lead" style="margin:6px 0 0">장터에서 만난 사람 중 한 명을 고르고, 그 사람의 처지에서 5~8문장으로 씁니다.</p></div>
+   <b>누가 되어 쓸까요?</b>
+   <div class="chips" id="pick">${met.map(id=>`<button class="chip ${L.who===id?'on':''}" data-id="${id}"><i style="${face(id)}"></i>${ch(id).name}</button>`).join('')}</div>
+   <div class="guide" id="guide" ${L.who?'':'hidden'}>
+    ${GUIDE.map((g,i)=>`<label for="g${i}">${i+1}. ${g[0]}<small>${g[1]}</small><textarea id="g${i}" rows="2">${esc(L.parts[i])}</textarea></label>`).join('')}
+    <div class="count" id="cnt"></div>
+   </div>
+   <div id="preview" ${L.who?'':'hidden'}>
+    <div class="paper">
+     <div class="mast"><b>장터신보</b><span>가상 신문 · 一九二三年<br>京城 鍾路</span></div>
+     <div class="col-h">讀者投稿 독자 투고</div>
+     <h3 id="pv-h"></h3><div class="by" id="pv-by"></div><div class="body" id="pv-b"></div>
+     <img class="stamp" src="${IMG.stamp_sq}" alt="">
+    </div>
+    <p class="note" style="margin-top:10px">완성되면 화면을 캡처하거나 글을 복사해 선생님께 제출하세요.</p>
+   </div>
+   <div class="row"><button class="btn ghost" id="copy" ${L.who?'':'hidden'}>글 복사하기</button></div>
+   <div class="row"><button class="btn ghost" id="back">쟁점 저울로</button><button class="btn" id="next">정리하기</button></div>
+  </section>`;
+  const body=()=>L.parts.map(s=>s.trim()).filter(Boolean).join(' ');
+  const upd=()=>{
+    if(!L.who)return;
+    const c=ch(L.who), n=sentences(body());
+    $('#pv-h').textContent=L.parts[1].trim()?L.parts[1].trim().split(/(?<=[.!?。])/)[0].slice(0,40):'제목은 두 번째 칸의 첫 문장이 됩니다';
+    $('#pv-by').textContent=c.place+' · '+c.name;
+    $('#pv-b').textContent=body()||'아래 칸을 채우면 여기에 신문 글이 나타납니다.';
+    const cnt=$('#cnt');cnt.textContent=`지금 ${n}문장 · 5~8문장이 알맞아요`;cnt.classList.toggle('ok',n>=5&&n<=8);
+    $('#next').disabled=n<5;
+  };
+  document.querySelectorAll('#pick .chip').forEach(b=>b.onclick=()=>{L.who=b.dataset.id;save();s4()});
+  GUIDE.forEach((_,i)=>{const t=$('#g'+i);t.oninput=()=>{L.parts[i]=t.value;save();upd()}});
+  $('#next').disabled=true; upd();
+  $('#copy').onclick=async()=>{const c=ch(L.who);const txt=`[장터신보 독자 투고]\n${c.place} · ${c.name}\n\n${body()}\n\n— ${S.name}`;
+    try{await navigator.clipboard.writeText(txt);toast('글을 복사했어요')}catch(e){const r=document.createRange();r.selectNodeContents($('#pv-b'));const s=getSelection();s.removeAllRanges();s.addRange(r);toast('글을 선택했어요. 길게 눌러 복사하세요')}};
+  $('#back').onclick=()=>go(3);
+  $('#next').onclick=()=>go(5);
+}
+
+/* 5 summary */
+function s5(){
+  const met=metIds(), cnt={pro:0,con:0,mix:0}; met.forEach(id=>cnt[S.met[id].stance]++);
+  $('#app').innerHTML=`<section class="screen">
+   <div><span class="eyebrow">정리</span><h2>장터에서 들은 목소리</h2></div>
+   <div class="bar">${Object.entries(STANCE).map(([k,l])=>`<div><strong>${cnt[k]}</strong>${l}</div>`).join('')}</div>
+   <div class="sum">${met.map(id=>{const m=S.met[id];return `<div class="sum-row"><i style="${face(id)}"></i><div><b>${ch(id).name}</b><span>${esc(m.memo)}</span></div><span class="pill ${m.stance}">${STANCE[m.stance]}</span></div>`}).join('')}</div>
+   <h3 style="font-size:1.3rem">내 저울</h3>
+   <div class="scale-sum">${ISSUES.map((t,i)=>{const s=S.scale[i];return `<div>${t}<br><em>${s.v==null?'아직 표시 안 함':TICKS[s.v]}</em> · 근거: ${s.who.map(id=>ch(id).name).join(', ')||'없음'}</div>`}).join('')}</div>
+   <div class="question"><small>오늘의 질문</small>모두를 위한 운동이었을까, 누군가를 위한 운동이었을까?</div>
+   <label class="fld" for="fin">내 답을 한 문장으로<textarea id="fin" rows="3" placeholder="예: 민족을 위한 운동이었지만, 이익은 ○○에게 더 많이 돌아갔다.">${esc(S.final)}</textarea></label>
+   <div class="submit-box">
+    <b>${esc(S.sid)} ${esc(S.name)}</b>
+    <button class="btn seal" id="send">선생님께 제출</button>
+    <p id="sendMsg" class="${S.submittedAt?'ok':''}">${S.submittedAt?S.submittedAt+'에 제출했어요. 고쳐서 다시 내면 새 줄로 추가돼요.':'오늘의 질문에 답을 쓰면 제출할 수 있어요.'}</p>
+   </div>
+   <div class="row"><button class="btn ghost" id="copyAll">내 활동 전체 복사</button></div>
+   <div class="row"><button class="btn ghost" id="back">투고로 돌아가기</button><button class="btn ghost" id="reset">처음부터 다시 하기</button></div>
+  </section>`;
+  const send=$('#send'),msg=$('#sendMsg');
+  const chkSend=()=>send.disabled=!S.final.trim(); chkSend();
+  $('#fin').oninput=e=>{S.final=e.target.value;save();chkSend()};
+  send.onclick=async()=>{
+    if(!SUBMIT_URL){msg.className='err';msg.textContent='아직 제출 주소가 설정되지 않았어요. 「내 활동 전체 복사」로 선생님께 보내 주세요.';return}
+    send.disabled=true;send.textContent='보내는 중…';msg.className='';msg.textContent='';
+    const body=JSON.stringify(record());
+    let ok=false;
+    try{const r=await fetch(SUBMIT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body});const j=await r.json();ok=!!j.ok}
+    catch(e){try{await fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body});ok=true}catch(_){ok=false}}
+    send.textContent='선생님께 제출';chkSend();
+    if(ok){const d=new Date();S.submittedAt=`${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;save();msg.className='ok';msg.textContent=S.submittedAt+'에 제출했어요. 고쳐서 다시 내면 새 줄로 추가돼요.'}
+    else{msg.className='err';msg.textContent='제출하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.'}
+  };
+  $('#back').onclick=()=>go(4);
+  let arm=false;
+  $('#reset').onclick=e=>{if(!arm){arm=true;e.target.textContent='한 번 더 누르면 모두 지워집니다';e.target.classList.add('seal');return}
+    try{localStorage.removeItem(KEY)}catch(_){} S=blank();go(0)};
+  $('#copyAll').onclick=async()=>{
+    const L=S.letter;const lines=[`1923 종로 장날 · ${S.sid} ${S.name}`,'','[장터에서 만난 사람]',...met.map(id=>`- ${ch(id).name}: ${STANCE[S.met[id].stance]} / ${S.met[id].memo}`),'','[쟁점 저울]',...ISSUES.map((t,i)=>`- ${t} → ${S.scale[i].v==null?'-':TICKS[S.scale[i].v]} (근거: ${S.scale[i].who.map(id=>ch(id).name).join(', ')})`),'','[독자 투고]',L.who?ch(L.who).name+'의 입장':'',L.parts.filter(Boolean).join(' '),'','[오늘의 질문에 대한 내 답]',S.final];
+    const txt=lines.join('\n');
+    try{await navigator.clipboard.writeText(txt);toast('활동 전체를 복사했어요')}catch(_){toast('복사가 막혀 있어요. 화면을 캡처해 제출하세요')}};
+}
+
+/* one row for the teacher's sheet; keys become column headers */
+function record(){
+  const L=S.letter, r={'학번':S.sid,'이름':S.name,
+    '배경 퀴즈':CARDS.filter((c,i)=>S.quiz[i]===c.a).length+'/'+CARDS.length,
+    '만난 인물 수':metIds().length};
+  CHARS.forEach(c=>{const m=S.met[c.id];r[c.name]=m&&m.stance?`${STANCE[m.stance]} | 이유: ${m.memo}${m.answer?' | 대답: '+m.answer:''}`:''});
+  ISSUES.forEach((t,i)=>{const s=S.scale[i];r['쟁점'+(i+1)]=s.v==null?'':TICKS[s.v];r['쟁점'+(i+1)+' 근거']=s.who.map(id=>ch(id).name).join(', ')});
+  r['투고 인물']=L.who?ch(L.who).name:'';
+  r['투고 글']=L.parts.map(s=>s.trim()).filter(Boolean).join(' ');
+  r['오늘의 질문 답']=S.final.trim();
+  return r;
+}
+
+render();
+</script>
+</body>
+</html>
